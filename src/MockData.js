@@ -2863,4 +2863,4 @@ const data = {
   ],
 };
 
-export default MockData
+export default data

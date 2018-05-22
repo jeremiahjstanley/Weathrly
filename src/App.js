@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
-import MockData from './MockData.js';
+import data from './MockData.js';
 import CurrentWeather from './CurrentWeather.js'
-
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      city: data.current_observation.display_location.city,
-      condition: data.current_observation.weather,
-      temperature: data.current_observation.temp_f,
+      city: '',
+      currentCity: ''
     }
+  }
+
+  updateCurrentCityValue(event) {
+    this.setState({city: event.target.city})
+  }
+
+  submitCurrentCity() {
+    this.setState({ })
   }
 
   render() {
     return (
       <div className="root">
+        <h2>Enter Location</h2>
+        <input 
+          type="text"
+          value={this.state.city}
+          onChange={(event) => this.updateCurrentCityValue(event)} />
         <CurrentWeather 
-        city= {this.state.city}
-        condition = {this.state.condition}
-        temperature = {this.state.temperature}
+        city={data.current_observation.display_location.city}
+        condition = {data.current_observation.weather}
+        temperature={data.current_observation.temp_f} 
         />
       </div>
 
@@ -27,4 +38,4 @@ class App extends Component {
   }
 }
 
-export default App.js
+export default App
