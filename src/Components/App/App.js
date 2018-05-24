@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import data from '../../MockData.js';
-import CurrentWeather from '../CurrentWeather/CurrentWeather.js'
+import cleanData from './dataCleaner.js';
+import CurrentWeather from '../CurrentWeather/CurrentWeather.js';
+
 
 class App extends Component {
   constructor() {
@@ -13,31 +14,53 @@ class App extends Component {
 
   updateCurrentCityValue(event) {
     const city = { city: event.target.value }
-    console.log(event);
     this.setState(city)
   }
 
   submitCurrentCity() {
-    this.setState({ })
+    this.displayCurrentWeather()
+    //api fetch weather data
+  }
+
+  displayCurrentWeather() {
+
   }
 
   render() {
-    return (
-      <div className="root">
+    if (this.state.city) {
+      return (
+
+        <div className="root">
         <h2>Enter Location</h2>
         <input 
-          type="text"
-          value={this.state.city}
-          onChange={(event) => this.updateCurrentCityValue(event)} />
+        type="text"
+        value={this.state.city}
+        onChange={(event) => this.updateCurrentCityValue(event)} />
+        <button onClick={(event) => this.submitCurrentCity(event)}>Submit</button>
         <CurrentWeather 
-        city={data.current_observation.display_location.city}
-        condition = {data.current_observation.weather}
-        temperature={data.current_observation.temp_f} 
+        city={cleanData.city}
+        condition = {cleanData.condition}
+        temperature={cleanData.temperature} 
+        day={cleanData.day}
+        high={cleanData.high}
+        low={cleanData.low}
+        summary={cleanData.summary}
         />
       </div>
+      );
+    } else {
+      return (
+        <div className="root">
+          <h1>Welcome to Weatherly</h1>
+          <input type = "text" value = { this.state.city }
+          onChange = {(event) => this.updateCurrentCityValue(event)}/> 
+          <button onClick = {(event) => this.submitCurrentCity(event)}> Submit </button>
+        </div>
+      )
+    }
 
-    );
-  }
+  } 
 }
+
 
 export default App;
