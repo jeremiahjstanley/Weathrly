@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import data from './MockData.js';
-import CurrentWeather from './CurrentWeather.js'
+import data from '../../MockData.js';
+import CurrentWeather from '../CurrentWeather/CurrentWeather.js'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      city: '',
-      currentCity: ''
+      city: ''
     }
+    this.updateCurrentCityValue = this.updateCurrentCityValue.bind(this);
   }
 
   updateCurrentCityValue(event) {
-    this.setState({city: event.target.city})
+    const city = { city: event.target.value }
+    console.log(event);
+    this.setState(city)
   }
 
   submitCurrentCity() {

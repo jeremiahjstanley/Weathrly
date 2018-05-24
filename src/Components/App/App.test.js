@@ -1,20 +1,29 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount, render } from 'enzyme';
 import App from '../App/App.js';
 
 describe('App unit test', () => {
-  let renderedApp 
+  let renderedApp; 
   beforeEach(() => renderedApp = shallow(<App />));
 
   describe('App default state', () => {
-    test('App has default state of the current weather', () => {
-      const expectedState = {};
-      const actualState = renderedApp.state('currentWeather');
+    test('App has default state of the city', () => {
+      const expectedState = {
+        city: ''
+      };
+      const actualState = renderedApp.state();
 
       expect(actualState).toEqual(expectedState);
     });
-   })
-  describe('App class methods', () => {
-    test('App has a method updateCurrentCityValue', )
-  })
+  });
+
+    test('updateCurrentCityValue changes the city based on user input', () => {
+      const expectedState = 'some city';
+      const mockEvent = { target: { value: 'some city' } };
+      renderedApp.instance().updateCurrentCityValue(mockEvent);
+
+      const actualState = renderedApp.state().city;
+
+      expect(actualState).toEqual(expectedState);
+    })
 });
