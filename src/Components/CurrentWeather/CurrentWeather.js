@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-
-const CurrentWeather = ({ city, condition, day, temperature, high, low}) => {
+const CurrentWeather = ({ city, condition, day, temperature, high, low, summary }) => {
   return (
     <div> 
       <h2> { city } </h2>
@@ -9,6 +8,7 @@ const CurrentWeather = ({ city, condition, day, temperature, high, low}) => {
       <h1> { temperature } </h1>
       <h3> { day } TODAY</h3>
       <h3> { high },{ low } </h3>
+      <p> { summary } </p>
     </div> 
     )
 } 
