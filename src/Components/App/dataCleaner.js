@@ -1,6 +1,8 @@
 import data from '../../MockData.js';
 
-export const currentWeatherData = {
+
+export const currentWeatherData = data => {
+  const currentWeatherData = {
     city: data.current_observation.display_location.city,
     condition: data.current_observation.weather,
     temperature: data.current_observation.temp_f,
@@ -9,9 +11,11 @@ export const currentWeatherData = {
     low: data.forecast.simpleforecast.forecastday[0].low.fahrenheit,
     summary: data.forecast.txt_forecast.forecastday[0].fcttext
   }
+  return currentWeatherData
+}
 
 
-export const sevenHourWeatherData = (data) => {
+export const sevenHourWeatherData = data => {
   const sevenHourWeatherData = []; 
 
   data.hourly_forecast.splice(0, 6).forEach(hour => {
@@ -27,13 +31,19 @@ export const sevenHourWeatherData = (data) => {
 }
 
 
-// export const tenDayWeatherData = (data) => {
-//   return {
-//     day: data.forecast.simpleforecast.forecastday[i].date.weekday,
-//     condition: data.forecast.simpleforecast[i].conditions,
-//     condtionIcon: data.forecast.simpleforecast[i].icon_url,
-//     high: data.forecast.simpleforecast.forecastday[i].high.fahrenheit,
-//     low: data.forecast.simpleforecast.forecastday[i].low.fahrenheit
-//   }
-// };
+export const tenDayWeatherData = data => {
+  const tenDayWeatherData = []
+
+  data.forecast.simpleforecast.forecastday.forEach(day => {
+
+    tenDayWeatherData.push({
+      day: day.date.weekday,
+      condition: day.conditions,
+      condtionIcon: day.icon_url,
+      high: day.high.fahrenheit,
+      low: day.low.fahrenheit  
+    });
+  })
+  return tenDayWeatherData
+};
 
