@@ -1,7 +1,6 @@
 import data from '../../MockData.js';
 
-export default let currentWeatherData = (data) => {
-  return {
+export const currentWeatherData = {
     city: data.current_observation.display_location.city,
     condition: data.current_observation.weather,
     temperature: data.current_observation.temp_f,
@@ -10,24 +9,31 @@ export default let currentWeatherData = (data) => {
     low: data.forecast.simpleforecast.forecastday[0].low.fahrenheit,
     summary: data.forecast.txt_forecast.forecastday[0].fcttext
   }
-};
 
-export default let sevenHourWeatherData = (data) => {
-  return {
-    hour: data.hourly_forecast[i].FCTTIME.hour,
-    condition: data.hourly_forecast[i].wx,
-    condtionIcon: data.hourly_forecast[i].icon_url,
-    temperature: data.hourly_forecast[i].temp.english
-  }
-};
 
-export default let tenDayWeatherData = (data) => {
-  return {
-    day:  data.forecast.simpleforecast.forecastday[i].date.weekday,
-    condition:  data.forecast.simpleforecast[i].conditions,
-    condtionIcon:  data.forecast.simpleforecast[i].icon_url,
-    high:  data.forecast.simpleforecast.forecastday[i].high.fahrenheit,
-    low:  data.forecast.simpleforecast.forecastday[i].low.fahrenheit
-  }
-};
+export const sevenHourWeatherData = (data) => {
+  const sevenHourWeatherData = []; 
+
+  data.hourly_forecast.splice(0, 6).forEach(hour => {
+
+    sevenHourWeatherData.push({
+      hour: hour.FCTTIME.civil,
+      condition: hour.wx,
+      condtionIcon: hour .icon_url,
+      temperature: hour.temp.english
+    });
+  }); 
+  return sevenHourWeatherData;
+}
+
+
+// export const tenDayWeatherData = (data) => {
+//   return {
+//     day: data.forecast.simpleforecast.forecastday[i].date.weekday,
+//     condition: data.forecast.simpleforecast[i].conditions,
+//     condtionIcon: data.forecast.simpleforecast[i].icon_url,
+//     high: data.forecast.simpleforecast.forecastday[i].high.fahrenheit,
+//     low: data.forecast.simpleforecast.forecastday[i].low.fahrenheit
+//   }
+// };
 

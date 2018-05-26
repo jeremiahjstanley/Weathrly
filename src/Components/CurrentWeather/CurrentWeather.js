@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const CurrentWeather = ({ city, condition, day, temperature, high, low, summary }) => {
   return (
