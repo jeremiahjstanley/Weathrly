@@ -1,6 +1,3 @@
-import data from '../../MockData.js';
-
-
 export const currentWeatherData = data => {
   const currentWeatherData = {
     city: data.current_observation.display_location.city,
@@ -11,7 +8,7 @@ export const currentWeatherData = data => {
     low: data.forecast.simpleforecast.forecastday[0].low.fahrenheit,
     summary: data.forecast.txt_forecast.forecastday[0].fcttext
   }
-  return currentWeatherData
+  return currentWeatherData;
 }
 
 

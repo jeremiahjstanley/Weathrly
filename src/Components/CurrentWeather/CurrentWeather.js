@@ -4,14 +4,28 @@ import Card from '../Card/Card.js';
 const CurrentWeather = props => {
   const key = Date.now
   return ( <Card  
-      city = {city}
-      condition = {condition}
-      temperature= {temperature}
-      day = {day}
-      high = {high}
-      low = {low}
-      summary = {summary}
-      key = {key}
+      city = {props.forecast.city}
+      condition = {
+        props.forecast.condition
+      }
+      temperature = {
+        props.forecast.temperature
+      }
+      day = {
+        props.forecast.day
+      }
+      high = {
+        props.forecast.high
+      }
+      low = {
+        props.forecast.low
+      }
+      summary = {
+        props.forecast.summary
+      }
+      key = {
+        props.forecast.key
+      }
     /> 
   )
 }; 

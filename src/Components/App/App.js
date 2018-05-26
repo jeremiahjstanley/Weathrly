@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import data from '../../MockData.js';
-import  { currentWeatherData, sevenHourWeatherData } from './dataCleaner.js';
+import  { currentWeatherData, sevenHourWeatherData, tenDayWeatherData } from './dataCleaner.js';
 import CurrentWeather from '../CurrentWeather/CurrentWeather.js';
 import SevenHour from '../SevenHour/SevenHour.js';
+import TenDay from '../TenDay/TenDay.js';
 
 
 class App extends Component {
@@ -10,9 +11,9 @@ class App extends Component {
     super()
     this.state = {
       city: '',
+      currentWeather: [],
       sevenHour: [],
       tenDay: [],
-      currentWeather: {},
     }
     this.updateCurrentCityValue = this.updateCurrentCityValue.bind(this);
   }
@@ -30,7 +31,8 @@ class App extends Component {
   componentDidMount() {
     this.setState({
       sevenHour: sevenHourWeatherData(data),
-      // tenDay: 
+      tenDay: tenDayWeatherData(data),
+      currentWeather: currentWeatherData(data)
     })
   }
 
@@ -51,11 +53,14 @@ class App extends Component {
         <button onClick={(event) => this.submitCurrentCity(event)}>Submit</button>
 
         <CurrentWeather 
-        weather={this.state.currentWeather}
+        forecast={this.state.currentWeather}
         />
 
         <SevenHour
         forecast={this.state.sevenHour}
+        />
+        <TenDay
+        forecast={this.state.tenDay}
         />
 
       </div>
