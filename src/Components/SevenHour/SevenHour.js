@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Card from '../Card/Card.js'; 
 
-const SevenHour = (props) => {
+const SevenHour = props => {
   return (
     props.forecast.map((hour, index) => {
       const key = index + hour.hour;

@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       city: '',
       sevenHour: [],
-      tenDay: []
+      tenDay: [],
+      currentWeather: {},
     }
     this.updateCurrentCityValue = this.updateCurrentCityValue.bind(this);
   }
@@ -50,13 +51,7 @@ class App extends Component {
         <button onClick={(event) => this.submitCurrentCity(event)}>Submit</button>
 
         <CurrentWeather 
-          city={currentWeatherData.city}
-          condition = {currentWeatherData.condition}
-          temperature={currentWeatherData.temperature} 
-          day={currentWeatherData.day}
-          high={currentWeatherData.high}
-          low={currentWeatherData.low}
-          summary={currentWeatherData.summary}
+        weather={this.state.currentWeather}
         />
 
         <SevenHour

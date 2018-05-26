@@ -1,16 +1,19 @@
 import React from 'react';
+import Card from '../Card/Card.js'; 
 
-const CurrentWeather = ({ city, condition, day, temperature, high, low, summary }) => {
-  return (
-    <div> 
-      <h2> { city } </h2>
-      <h3> { condition } </h3>
-      <h1> { temperature } </h1>
-      <h3> { day } TODAY</h3>
-      <h3> { high },{ low } </h3>
-      <p> { summary } </p>
-    </div> 
-    )
-} 
+const CurrentWeather = props => {
+  const key = Date.now
+  return ( <Card  
+      city = {city}
+      condition = {condition}
+      temperature= {temperature}
+      day = {day}
+      high = {high}
+      low = {low}
+      summary = {summary}
+      key = {key}
+    /> 
+  )
+}; 
 
 export default CurrentWeather;
