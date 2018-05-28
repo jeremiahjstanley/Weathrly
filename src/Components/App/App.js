@@ -1,68 +1,52 @@
 import React, { Component } from 'react';
-import data from '../../MockData.js';
 import  { currentWeatherData, sevenHourWeatherData, tenDayWeatherData } from './dataCleaner.js';
 import CurrentWeather from '../CurrentWeather/CurrentWeather.js';
 import SevenHour from '../SevenHour/SevenHour.js';
 import TenDay from '../TenDay/TenDay.js';
+import Search from '../Search/Search.js'
+import { API_K } from '../config.js';
 
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      city: '',
       currentWeather: [],
       sevenHour: [],
       tenDay: [],
+      search: []
     }
-    this.updateCurrentCityValue = this.updateCurrentCityValue.bind(this);
-  }
-
-  updateCurrentCityValue(event) {
-    const city = { city: event.target.value }
-    this.setState(city)
-  }
-
-  submitCurrentCity() {
-    this.displayCurrentWeather()
-    //api fetch weather data
   }
 
   componentDidMount() {
-    this.setState({
-      sevenHour: sevenHourWeatherData(data),
-      tenDay: tenDayWeatherData(data),
-      currentWeather: currentWeatherData(data)
-    })
+    fetch(`http://api.wunderground.com/api/${API_K}//conditions/geolookup/hourly/forecast10day/q/CO/Denver.json`)
+      .then(data => data.json())
+      .then(parsedData => {
+      this.setState({
+          sevenHour: sevenHourWeatherData(parsedData),
+          tenDay: tenDayWeatherData(parsedData),
+          currentWeather: currentWeatherData(parsedData)
+        })
+      })
+      .catch(err => console.log('parsing failed', err))
   }
 
   render() {
     // if (this.state.city) {
       return (
-
-        <div className="root">
-
-        <h2>Enter Location</h2>
-
-        <input 
-        type="text"
-        value={this.state.city}
-        onChange={(event) => this.updateCurrentCityValue(event)}
-        />
-
-        <button onClick={(event) => this.submitCurrentCity(event)}>Submit</button>
-
+      <div className="root">
+      <h2>Enter Location</h2>
+        <Search 
+        /> 
         <CurrentWeather 
-        forecast={this.state.currentWeather}
+          forecast={this.state.currentWeather}
         />
-
         <SevenHour
-        forecast={this.state.sevenHour}
+          sevenHour={this.state.sevenHour}
         />
         <TenDay
-        forecast={this.state.tenDay}
+          tenDay={this.state.tenDay}
         />
-
       </div>
       );
     // } else {

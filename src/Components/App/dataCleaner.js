@@ -11,7 +11,6 @@ export const currentWeatherData = data => {
   return currentWeatherData;
 }
 
-
 export const sevenHourWeatherData = data => {
   const sevenHourWeatherData = []; 
 
@@ -20,13 +19,12 @@ export const sevenHourWeatherData = data => {
     sevenHourWeatherData.push({
       hour: hour.FCTTIME.civil,
       condition: hour.wx,
-      condtionIcon: hour .icon_url,
+      conditionIcon: hour.icon_url,
       temperature: hour.temp.english
     });
   }); 
   return sevenHourWeatherData;
 }
-
 
 export const tenDayWeatherData = data => {
   const tenDayWeatherData = []
@@ -36,7 +34,7 @@ export const tenDayWeatherData = data => {
     tenDayWeatherData.push({
       day: day.date.weekday,
       condition: day.conditions,
-      condtionIcon: day.icon_url,
+      conditionIcon: day.icon_url,
       high: day.high.fahrenheit,
       low: day.low.fahrenheit  
     });

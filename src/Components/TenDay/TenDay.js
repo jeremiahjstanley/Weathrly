@@ -3,12 +3,12 @@ import Card from '../Card/Card.js';
 
 const TenDay = props => {
   return (
-    props.forecast.map((day, index) => {
-      const key = index + day.day;
+    props.tenDay.map((day, index) => {
+      let key = index + day.day;
         return <Card 
                 day = {day.day}
                 condition = {day.condition}
-                condtionIcon = {day.condtionIcon}
+                conditionIcon = {day.conditionIcon}
                 high = {day.high}
                 low = {day.low}
                 key = {key}
