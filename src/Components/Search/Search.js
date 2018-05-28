@@ -21,7 +21,6 @@ class Search extends Component {
       {console.log(this.getLocation)}
         <input 
           type="text"
-          value={this.state.location}
           onChange={(event) => this.updateLocationValue(event)}
         />
         <button onClick = {(event) => {

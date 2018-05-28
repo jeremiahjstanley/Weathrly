@@ -21,12 +21,11 @@ class App extends Component {
   }
 
   getLocation(input) {
-    console.log(input)
     let userInput = input.split(',');
     let city = userInput[0];
     let state = userInput[1];
     console.log(city, state)
-    fetch(`http://api.wunderground.com/api/${API_K}//conditions/geolookup/hourly/forecast10day/q/${city}/${state}.json`)
+    fetch(`http://api.wunderground.com/api/${API_K}//conditions/geolookup/hourly/forecast10day/q/${state}/${city}.json`)
       .then(data => data.json())
       .then(parsedData => {
       this.setState({
@@ -42,6 +41,7 @@ class App extends Component {
 
   render() {
     if (this.state.city) {
+      console.log(this.city)
       return (
       <div className="root">
       <h2>Enter Location</h2>
@@ -50,7 +50,7 @@ class App extends Component {
         /> 
         <CurrentWeather 
           forecast={this.state.currentWeather}
-        />
+          />
         <SevenHour
           sevenHour={this.state.sevenHour}
         />

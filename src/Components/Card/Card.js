@@ -8,7 +8,7 @@ const Card = props => {
       <h1>Hour: {props.hour}</h1>
       <h1>Temperature: {props.temperature}</h1>
       <img src= {props.conditionIcon} alt="Weather icon"/>
-      <h1>{props.condition}</h1>
+      <h1>Condition: {props.condition}</h1>
     </div>
     )
   }
@@ -30,7 +30,7 @@ const Card = props => {
       <h1> Weekday: {props.weekday} </h1>
       <h1> high: {props.high} </h1>
       <h1> Low: {props.low} </h1>
-      <h1> Condition: {props.summary} </h1>
+      <h1> Summary: {props.summary} </h1>
     </div>
   )
 }

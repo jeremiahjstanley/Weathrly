@@ -14,7 +14,7 @@ export const currentWeatherData = data => {
 export const sevenHourWeatherData = data => {
   const sevenHourWeatherData = []; 
 
-  data.hourly_forecast.splice(0, 6).forEach(hour => {
+  data.hourly_forecast.splice(0, 7).forEach(hour => {
 
     sevenHourWeatherData.push({
       hour: hour.FCTTIME.civil,
