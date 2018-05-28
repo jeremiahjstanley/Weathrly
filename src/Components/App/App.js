@@ -14,15 +14,24 @@ class App extends Component {
       currentWeather: [],
       sevenHour: [],
       tenDay: [],
-      search: []
+      city: '',
+      state: ''
     }
+    this.getLocation = this.getLocation.bind(this);
   }
 
-  componentDidMount() {
-    fetch(`http://api.wunderground.com/api/${API_K}//conditions/geolookup/hourly/forecast10day/q/CO/Denver.json`)
+  getLocation(input) {
+    console.log(input)
+    let userInput = input.split(',');
+    let city = userInput[0];
+    let state = userInput[1];
+    console.log(city, state)
+    fetch(`http://api.wunderground.com/api/${API_K}//conditions/geolookup/hourly/forecast10day/q/${city}/${state}.json`)
       .then(data => data.json())
       .then(parsedData => {
       this.setState({
+          city: city,
+          state: state,
           sevenHour: sevenHourWeatherData(parsedData),
           tenDay: tenDayWeatherData(parsedData),
           currentWeather: currentWeatherData(parsedData)
@@ -32,11 +41,12 @@ class App extends Component {
   }
 
   render() {
-    // if (this.state.city) {
+    if (this.state.city) {
       return (
       <div className="root">
       <h2>Enter Location</h2>
         <Search 
+        getLocation={this.getLocation}
         /> 
         <CurrentWeather 
           forecast={this.state.currentWeather}
@@ -49,16 +59,16 @@ class App extends Component {
         />
       </div>
       );
-    // } else {
-    //   return (
-    //     <div className="root">
-    //       <h1>Welcome to Weatherly</h1>
-    //       <input type = "text" value = { this.state.city }
-    //       onChange = {(event) => this.updateCurrentCityValue(event)}/> 
-    //       <button onClick = {(event) => this.submitCurrentCity(event)}> Submit </button>
-    //     </div>
-    //   )
-    // }
+    } else {
+      return (
+        <div className="root">
+          <h1>Welcome to Weatherly</h1>
+           <Search 
+            getLocation={this.getLocation}
+          />
+        </div>
+      )
+    }
 
   } 
 }

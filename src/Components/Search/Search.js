@@ -5,36 +5,34 @@ class Search extends Component {
   constructor(props) {
     super()
     this.state = {
-      city: '',
-      state: ''
+      location: ''
     }
-    this.updateCurrentCityValue = this.updateCurrentCityValue.bind(this);
+    this.updateLocationValue = this.updateLocationValue.bind(this);
   }
-
-  updateCurrentCityValue(event) {
-    const cityState = {city: event.target.value}
-    this.setState(cityState)
-  }
-
-  verifyCity(event) {
-    event.str.split(',')
+  
+  updateLocationValue(event) {
+    const location = {location: event.target.value}
+    this.setState(location)
   }
 
   render() {
     return (
-      <form>
+      <form onSubmit= {(event) => event.preventDefault()}>
+      {console.log(this.getLocation)}
         <input 
           type="text"
-          value={this.state.city}
-          onChange={(event) => this.verifyCity(event)}
+          value={this.state.location}
+          onChange={(event) => this.updateLocationValue(event)}
         />
-        <button onClick={(event) => this.submitCurrentCity(event)}>
+        <button onClick = {(event) => {
+            this.props.getLocation(this.state.location)
+        }
+      }>
           Submit
         </button>
       </form>
-      )
-
-  }
+    
+  )
 }
-
+}
 export default Search;
