@@ -21,4 +21,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # keys
-src/Components/config.js
+/Users/jeremiah/turing/mod2/projects/weathrly/src/Components/config.js
