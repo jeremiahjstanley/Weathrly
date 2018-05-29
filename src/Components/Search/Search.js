@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class Search extends Component {
   constructor(props) {
     super()
@@ -18,7 +17,6 @@ class Search extends Component {
   render() {
     return (
       <form onSubmit= {(event) => event.preventDefault()}>
-      {console.log(this.getLocation)}
         <input 
           type="text"
           onChange={(event) => this.updateLocationValue(event)}

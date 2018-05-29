@@ -6,11 +6,11 @@ import TenDay from '../TenDay/TenDay.js';
 import Search from '../Search/Search.js'
 import ErrorPage from '../ErrorPage/ErrorPage.js';
 import { API_K } from '../../config.js';
-// import locationData from '../../cityStateData.js'
-// import Trie from '@chrisboylen/complete-me'
+import locationData from '../../cityStateData.js'
+import index from '@chrisboylen/complete-me/'
 
-// const trie = new Trie();
-// trie.populate(locationData);
+const trie = new Trie();
+trie.populate(locationData);
 
 
 class App extends Component {
@@ -69,7 +69,6 @@ class App extends Component {
 
   render() {
     if (this.state.city) {
-      console.log(this.city)
       return (
       <div className="root">
       <h2>Enter Location</h2>
