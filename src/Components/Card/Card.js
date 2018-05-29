@@ -1,37 +1,34 @@
 import React from 'react';
 
 const Card = props => {
-  console.log(props)
   if (props.hour) {
     return ( 
     <div id={props.key}>
-      <h1>Hour: {props.hour}</h1>
-      <h1>Temperature: {props.temperature}</h1>
+      <p>{props.hour}</p>
       <img src= {props.conditionIcon} alt="Weather icon"/>
-      <h1>Condition: {props.condition}</h1>
+      <p>{props.temperature}</p>
+      <p>{props.condition}</p>
     </div>
     )
   }
   if (props.day) {
       return ( 
       <div id={props.key}>
-        <h1>Day: {props.day}</h1>
-        <h1>High: {props.high}</h1>
-        <h1>Low: {props.low}</h1>
+        <p>{props.day}</p>
         <img src= {props.conditionIcon} alt="Weather icon"/>
-        <h1>Condition: {props.condition}</h1>
-    </div>
+        <p>{props.high} | {props.low}</p>
+        <p>{props.condition}</p>
+      </div>
     )
   }
   if (props.city) {
     return (
       <div id={props.key}>
-        <h1>City: {props.city}</h1>
-        <h1> Temperature: {props.temperature} </h1>
-        <h1> Weekday: {props.weekday} </h1>
-        <h1> high: {props.high} </h1>
-        <h1> Low: {props.low} </h1>
-        <h1> Summary: {props.summary} </h1>
+        <h2>{props.city}</h2>
+        <h1>{props.temperature}</h1>
+        <p>{props.summary} </p>
+        <p>{props.weekday} "TODAY"</p>
+        <p>{props.high} | {props.low} </p>
       </div>
     )
   }

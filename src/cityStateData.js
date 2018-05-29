@@ -1,4 +1,4 @@
-export const locationData = [
+const locationData = [
     "New York, NY",
     "Los Angeles, CA",
     "Chicago, IL",
@@ -1000,3 +1000,5 @@ export const locationData = [
     "Beloit, WI",
     "Panama City, FL"
   ]
+
+  export default locationData;

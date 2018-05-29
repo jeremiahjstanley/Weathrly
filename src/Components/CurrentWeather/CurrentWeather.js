@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../Card/Card.js'; 
 
 const CurrentWeather = props => {
-  let key = Date.now();
+  let currentWeatherKey = Date.now();
   return ( <Card  
       city = {props.forecast.city}
       condition = {props.forecast.condition}
@@ -11,7 +11,7 @@ const CurrentWeather = props => {
       high = {props.forecast.high}
       low = {props.forecast.low}
       summary = {props.forecast.summary}
-      key = {key}
+      key = {currentWeatherKey}
     /> 
   )
 }; 
