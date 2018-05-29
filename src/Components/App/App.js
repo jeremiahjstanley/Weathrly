@@ -4,7 +4,13 @@ import CurrentWeather from '../CurrentWeather/CurrentWeather.js';
 import SevenHour from '../SevenHour/SevenHour.js';
 import TenDay from '../TenDay/TenDay.js';
 import Search from '../Search/Search.js'
-import { API_K } from '../config.js';
+import ErrorPage from '../ErrorPage/ErrorPage.js';
+import { API_K } from '../../config.js';
+// import locationData from '../../cityStateData.js'
+// import Trie from '@chrisboylen/complete-me'
+
+// const trie = new Trie();
+// trie.populate(locationData);
 
 
 class App extends Component {
@@ -15,7 +21,8 @@ class App extends Component {
       sevenHour: [],
       tenDay: [],
       city: '',
-      state: ''
+      state: '',
+      error: false
     }
     this.getLocation = this.getLocation.bind(this);
   }
@@ -24,7 +31,7 @@ class App extends Component {
     let stringifiedCity = localStorage.getItem('city');
     let parsedCity = JSON.parse(stringifiedCity);
     let stringifiedState = localStorage.getItem('state');
-    let parsedState = JSON.parse(stringifiedState);
+    let parsedState = JSON.parse(stringifiedState) || null;
     if (parsedCity) {
       this.getLocation(parsedCity + ',' + parsedState)
     }
@@ -44,13 +51,20 @@ class App extends Component {
           tenDay: tenDayWeatherData(parsedData),
           currentWeather: currentWeatherData(parsedData)
         })
-      let stringifiedCity = JSON.stringify(this.state.city);
-      let stringifiedState = JSON.stringify(this.state.state);
-      localStorage.setItem('city', stringifiedCity);
-      localStorage.setItem('state', stringifiedState);
+      this.storeLocation(this.state.city, this.state.state);
       })
-      .catch(err => console.log('parsing failed', err))
-      .catch(err => console.log('parsing failed', err))
+      .catch(err => {
+        this.setState({
+          error: true,
+        })
+    })
+  }
+
+  storeLocation(city, state) {
+    let stringifiedCity = JSON.stringify(city);
+    let stringifiedState = JSON.stringify(state);
+    localStorage.setItem('city', stringifiedCity);
+    localStorage.setItem('state', stringifiedState);
   }
 
   render() {
@@ -73,10 +87,19 @@ class App extends Component {
         />
       </div>
       );
+    } else if (this.state.error) {
+      return (
+        <div className="root">
+          <ErrorPage/>
+          <Search 
+            getLocation={this.getLocation}
+          />
+        </div>
+      )
     } else {
       return (
         <div className="root">
-          <h1>Welcome to Weatherly</h1>
+          <h1>Welcome to Weathrly</h1>
             <Search 
               getLocation={this.getLocation}
             />

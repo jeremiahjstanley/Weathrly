@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import cityStateData from '../../cityStateData.js'
+
 
 class Search extends Component {
   constructor(props) {
