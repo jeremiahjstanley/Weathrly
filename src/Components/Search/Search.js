@@ -23,15 +23,11 @@ class Search extends Component {
           type="text"
           onChange={(event) => this.updateLocationValue(event)}
         />
-        <button onClick = {(event) => {
-            this.props.getLocation(this.state.location)
-        }
-      }>
+        <button onClick = {(event) => this.props.getLocation(this.state.location)}>
           Submit
         </button>
-      </form>
-    
-  )
-}
+      </form> 
+    )
+  }
 }
 export default Search;
