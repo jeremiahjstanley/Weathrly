@@ -1,6 +1,6 @@
 export const currentWeatherData = data => {
   const currentWeatherData = {
-    city: data.current_observation.display_location.city,
+    city: data.current_observation.display_location.full,
     condition: data.current_observation.weather,
     temperature: data.current_observation.temp_f,
     weekday: data.forecast.simpleforecast.forecastday[0].date.weekday,

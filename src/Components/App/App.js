@@ -20,11 +20,20 @@ class App extends Component {
     this.getLocation = this.getLocation.bind(this);
   }
 
+  componentDidMount() {
+    let stringifiedCity = localStorage.getItem('city');
+    let parsedCity = JSON.parse(stringifiedCity);
+    let stringifiedState = localStorage.getItem('state');
+    let parsedState = JSON.parse(stringifiedState);
+    if (parsedCity) {
+      this.getLocation(parsedCity + ',' + parsedState)
+    }
+  }
+
   getLocation(input) {
     let userInput = input.split(',');
     let city = userInput[0];
     let state = userInput[1];
-    console.log(city, state)
     fetch(`http://api.wunderground.com/api/${API_K}//conditions/geolookup/hourly/forecast10day/q/${state}/${city}.json`)
       .then(data => data.json())
       .then(parsedData => {
@@ -35,7 +44,12 @@ class App extends Component {
           tenDay: tenDayWeatherData(parsedData),
           currentWeather: currentWeatherData(parsedData)
         })
+      let stringifiedCity = JSON.stringify(this.state.city);
+      let stringifiedState = JSON.stringify(this.state.state);
+      localStorage.setItem('city', stringifiedCity);
+      localStorage.setItem('state', stringifiedState);
       })
+      .catch(err => console.log('parsing failed', err))
       .catch(err => console.log('parsing failed', err))
   }
 
@@ -46,11 +60,11 @@ class App extends Component {
       <div className="root">
       <h2>Enter Location</h2>
         <Search 
-        getLocation={this.getLocation}
+          getLocation={this.getLocation}
         /> 
         <CurrentWeather 
           forecast={this.state.currentWeather}
-          />
+        />
         <SevenHour
           sevenHour={this.state.sevenHour}
         />
@@ -63,13 +77,12 @@ class App extends Component {
       return (
         <div className="root">
           <h1>Welcome to Weatherly</h1>
-           <Search 
-            getLocation={this.getLocation}
-          />
+            <Search 
+              getLocation={this.getLocation}
+            />
         </div>
       )
     }
-
   } 
 }
 

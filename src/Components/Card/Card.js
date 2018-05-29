@@ -23,16 +23,18 @@ const Card = props => {
     </div>
     )
   }
-  return (
-    <div id={props.key}>
-      <h1>City: {props.city}</h1>
-      <h1> Temperature: {props.temperature} </h1>
-      <h1> Weekday: {props.weekday} </h1>
-      <h1> high: {props.high} </h1>
-      <h1> Low: {props.low} </h1>
-      <h1> Summary: {props.summary} </h1>
-    </div>
-  )
+  if (props.city) {
+    return (
+      <div id={props.key}>
+        <h1>City: {props.city}</h1>
+        <h1> Temperature: {props.temperature} </h1>
+        <h1> Weekday: {props.weekday} </h1>
+        <h1> high: {props.high} </h1>
+        <h1> Low: {props.low} </h1>
+        <h1> Summary: {props.summary} </h1>
+      </div>
+    )
+  }
 }
 
 export default Card;
