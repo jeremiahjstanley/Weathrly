@@ -15,28 +15,32 @@ const Card = props => {
   if (props.day) {
       return ( 
       <div className="day" id={props.key}>
-        <p>{props.day}</p>
-        <img src= {props.conditionIcon} alt="Weather icon"/>
-        <p>{props.high} | {props.low}</p>
-        <p>{props.condition}</p>
+        <p className="day-day">{props.day}</p>
+        <img className="day-img" src= {props.conditionIcon} alt="Weather icon"/>
+        <p className="day-highlow">{props.high} | {props.low}</p>
+        <p className="day-cond">{props.condition}</p>
       </div>
     )
   }
   if (props.city) {
     return (
-      <div id={props.key}>
+      <div className="current-weather" id={props.key}>
         <h2>{props.city}</h2>
         <h1>{props.temperature}</h1>
-        <p>{props.summary} </p>
-        <p>{props.weekday} TODAY</p>
-        <p>{props.high} | {props.low} </p>
+        <p className="summ">{props.summary} </p>
+        <p className="weekday">{props.weekday} TODAY</p>
+        <h3><span>High:</span> {props.high} | <span>Low:</span> {props.low} </h3>
       </div>
     )
   }
 }
     function determineBkg(props) {
-      if (props.temperature > 60) {
+      if (props.temperature > 65) {
         return 'sunny';
+      } else if (props.temperature < 30) {
+        return 'cold';
+      } else {
+        return 'normal'
       }
     }
 
