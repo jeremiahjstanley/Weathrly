@@ -33,7 +33,7 @@ span {
 }
 
 .seven-hour-cont {
-  justify-content: center;
+  justify-content: space-around;
   overflow: scroll;
 }
 
