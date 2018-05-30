@@ -6,13 +6,8 @@ import TenDay from '../TenDay/TenDay.js';
 import Search from '../Search/Search.js'
 import ErrorPage from '../ErrorPage/ErrorPage.js';
 import { API_K } from './config.js';
-import locationData from '../../cityStateData.js';
 import './App.css'
 
-// const Trie = require('@chrisboylen/complete-me/lib/Trie');
-// const trie = new Trie()
-// trie.populate(locationData)
-// autocomplete={trie.suggest}
 
 class App extends Component {
   constructor() {
@@ -63,15 +58,13 @@ class App extends Component {
     let stringifiedLocation = JSON.stringify(location);
     localStorage.setItem('location', stringifiedLocation);
   }
-
-  render() {
-    if (this.state.city) {
-      return (
+  
+  renderCurrentWeather() {
+    return (
       <div className="root">
       <h2>Enter Location</h2>
         <Search 
           getLocation={this.getLocation}
-
         /> 
         <CurrentWeather 
           forecast={this.state.currentWeather}
@@ -87,29 +80,40 @@ class App extends Component {
           />
         </div>
       </div>
-      );
-    } else if (this.state.error) {
-      return (
-        <div className="root">
-          <ErrorPage/>
-          <Search 
-            getLocation={this.getLocation}
-            
-          />
-        </div>
-      )
-    } else {
-      return (
+    );
+  }
+
+  renderErrorPage() {
+    return (
+      <div className="root">
+        <ErrorPage/>
+        <Search 
+          getLocation={this.getLocation}
+        />
+      </div>
+    )
+  }
+
+  renderSplashPage() {
+    return (
         <div className="root">
           <h1>Welcome to Weathrly</h1>
             <Search 
               getLocation={this.getLocation}
-
             />
         </div>
       )
-    }
-  } 
+  }
+
+  render() {
+    if (this.state.city) {
+      return this.renderCurrentWeather()
+    } else if (this.state.error) {
+        return this.renderErrorPage()
+    } else
+        return this.renderSplashPage()
+  }
+  
 }
 
 
