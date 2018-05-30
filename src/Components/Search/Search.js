@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 
-
 class Search extends Component {
   constructor(props) {
     super()
     this.state = {
-      location: ''
+      location: '',
+      suggestions: []
     }
     this.updateLocationValue = this.updateLocationValue.bind(this);
   }
   
   updateLocationValue(event) {
     const location = {location: event.target.value}
-    this.setState(location)
+    const suggestions = this.props.trie.suggest(location)
+    this.setState({
+      location: location,
+      suggestions: suggestions
+    })
   }
 
   render() {
     return (
       <form onSubmit= {(event) => event.preventDefault()}>
-      {console.log(this.getLocation)}
         <input 
           type="text"
+          list={this.state.suggestions}
           onChange={(event) => this.updateLocationValue(event)}
         />
         <button onClick = {(event) => this.props.getLocation(this.state.location)}>

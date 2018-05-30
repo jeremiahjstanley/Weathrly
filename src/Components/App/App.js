@@ -6,12 +6,11 @@ import TenDay from '../TenDay/TenDay.js';
 import Search from '../Search/Search.js'
 import ErrorPage from '../ErrorPage/ErrorPage.js';
 import { API_K } from '../../config.js';
-// import locationData from '../../cityStateData.js'
-// import Trie from '@chrisboylen/complete-me'
+import locationData from '../../cityStateData.js';
+import Trie from '@chrisboylen/complete-me/lib/Trie.js';
 
-// const trie = new Trie();
-// trie.populate(locationData);
-
+const trie = new Trie();
+trie.populate(locationData)
 
 class App extends Component {
   constructor() {
@@ -31,7 +30,7 @@ class App extends Component {
     let stringifiedCity = localStorage.getItem('city');
     let parsedCity = JSON.parse(stringifiedCity);
     let stringifiedState = localStorage.getItem('state');
-    let parsedState = JSON.parse(stringifiedState) || null;
+    let parsedState = JSON.parse((stringifiedState || ''));
     if (parsedCity) {
       this.getLocation(parsedCity + ',' + parsedState)
     }
@@ -69,12 +68,12 @@ class App extends Component {
 
   render() {
     if (this.state.city) {
-      console.log(this.city)
       return (
       <div className="root">
       <h2>Enter Location</h2>
         <Search 
           getLocation={this.getLocation}
+          autocomplete={trie.suggest}
         /> 
         <CurrentWeather 
           forecast={this.state.currentWeather}
@@ -93,6 +92,7 @@ class App extends Component {
           <ErrorPage/>
           <Search 
             getLocation={this.getLocation}
+            autocomplete={trie.suggest}
           />
         </div>
       )
@@ -102,6 +102,7 @@ class App extends Component {
           <h1>Welcome to Weathrly</h1>
             <Search 
               getLocation={this.getLocation}
+              autocomplete={trie.suggest}
             />
         </div>
       )

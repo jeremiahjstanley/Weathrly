@@ -27,7 +27,7 @@ const Card = props => {
         <h2>{props.city}</h2>
         <h1>{props.temperature}</h1>
         <p>{props.summary} </p>
-        <p>{props.weekday} "TODAY"</p>
+        <p>{props.weekday} TODAY</p>
         <p>{props.high} | {props.low} </p>
       </div>
     )
