@@ -34,6 +34,8 @@ class Search extends Component {
       <form onSubmit= {(event) => event.preventDefault()}>
         <input 
           type="text"
+          placeholder = "Type city, state here!"
+          onFocus = "this.placeholder = ''"
           list="cities"
           onChange={(event) => this.updateLocationValue(event)}
         />

@@ -1,5 +1,41 @@
-.App {
+* {
   text-align: center;
+}
+
+body {
+  background-color: #eaf3ff;
+  font-size: 62.5%;
+}
+
+input, button {
+  border: 0;
+  padding: .5em;
+}
+
+input {
+  background: linear-gradient(to bottom, #bec5ce 0%, #6d6f72 100%);
+  border-radius: 5px 0 0 5px;
+  color: #feffed;
+  vertical-align: bottom;
+}
+
+input::placeholder {
+  color: #f7faff;
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}
+
+button {
+  background: linear-gradient(to bottom, #ffffaa 0%, #ffe100 100%);
+  border-radius: 0 5px 5px 0;
+}
+
+button:hover {
+  background: linear-gradient(to bottom, #ffe5aa 0%, #ff9400 100%);
+  cursor: pointer;
 }
 
 .App-logo {
