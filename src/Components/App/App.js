@@ -5,8 +5,9 @@ import SevenHour from '../SevenHour/SevenHour.js';
 import TenDay from '../TenDay/TenDay.js';
 import Search from '../Search/Search.js'
 import ErrorPage from '../ErrorPage/ErrorPage.js';
-import { API_K } from '../../config.js';
+import { API_K } from './config.js';
 import locationData from '../../cityStateData.js';
+import './App.css'
 
 // const Trie = require('@chrisboylen/complete-me/lib/Trie');
 // const trie = new Trie()
@@ -28,12 +29,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let stringifiedCity = localStorage.getItem('city');
-    let parsedCity = JSON.parse(stringifiedCity);
-    let stringifiedState = localStorage.getItem('state');
-    let parsedState = JSON.parse(stringifiedState);
-    if (parsedCity) {
-      this.getLocation(parsedCity + ',' + parsedState)
+    let stringifiedLocation = localStorage.getItem('location');
+    let parsedLocation = JSON.parse(stringifiedLocation);
+    if (parsedLocation) {
+      this.getLocation(parsedLocation)
     }
   }
 
@@ -51,7 +50,7 @@ class App extends Component {
           tenDay: tenDayWeatherData(parsedData),
           currentWeather: currentWeatherData(parsedData)
         })
-      this.storeLocation(this.state.city, this.state.state);
+      this.storeLocation(input);
       })
       .catch(err => {
         this.setState({
@@ -60,11 +59,9 @@ class App extends Component {
     })
   }
 
-  storeLocation(city, state) {
-    let stringifiedCity = JSON.stringify(city);
-    let stringifiedState = JSON.stringify(state);
-    localStorage.setItem('city', stringifiedCity);
-    localStorage.setItem('state', stringifiedState);
+  storeLocation(location) {
+    let stringifiedLocation = JSON.stringify(location);
+    localStorage.setItem('location', stringifiedLocation);
   }
 
   render() {
@@ -78,13 +75,17 @@ class App extends Component {
         /> 
         <CurrentWeather 
           forecast={this.state.currentWeather}
-        />
-        <SevenHour
-          sevenHour={this.state.sevenHour}
-        />
-        <TenDay
-          tenDay={this.state.tenDay}
-        />
+          />
+        <div className="seven-hour-cont">
+          <SevenHour
+            sevenHour={this.state.sevenHour}
+          />
+        </div>
+        <div className="ten-day-cont">
+          <TenDay
+            tenDay={this.state.tenDay}
+          />
+        </div>
       </div>
       );
     } else if (this.state.error) {

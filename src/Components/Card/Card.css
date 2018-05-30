@@ -1,0 +1,8 @@
+.sunny {
+  background-color: gray;
+}
+
+.day {
+  display: inline-flex;
+  justify-content: space-between;
+}

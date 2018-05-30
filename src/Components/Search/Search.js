@@ -15,10 +15,7 @@ class Search extends Component {
   updateLocationValue(event) {
     const location = {location: event.target.value}
     // const suggestions = this.props.trie.suggest(location)
-    this.setState({
-      location: location,
-      // suggestions: suggestions
-    })
+    this.setState(location)
   }
 
   render() {
@@ -29,7 +26,7 @@ class Search extends Component {
           
           onChange={(event) => this.updateLocationValue(event)}
         />
-        <button onClick = {(event) => this.props.getLocation(this.state.location)}>
+        <button onClick= {(event) => this.props.getLocation(this.state.location)}>
           Submit
         </button>
       </form> 

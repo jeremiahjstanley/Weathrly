@@ -1,9 +1,10 @@
 import React from 'react';
+import './Card.css'
 
 const Card = props => {
   if (props.hour) {
     return ( 
-    <div id={props.key}>
+    <div className={determineBkg(props)} id={props.key}>
       <p>{props.hour}</p>
       <img src= {props.conditionIcon} alt="Weather icon"/>
       <p>{props.temperature}</p>
@@ -13,7 +14,7 @@ const Card = props => {
   }
   if (props.day) {
       return ( 
-      <div id={props.key}>
+      <div className="day" id={props.key}>
         <p>{props.day}</p>
         <img src= {props.conditionIcon} alt="Weather icon"/>
         <p>{props.high} | {props.low}</p>
@@ -33,5 +34,10 @@ const Card = props => {
     )
   }
 }
+    function determineBkg(props) {
+      if (props.temperature > 60) {
+        return 'sunny';
+      }
+    }
 
 export default Card;
