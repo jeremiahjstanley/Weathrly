@@ -2,29 +2,26 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import App from '../App/App.js';
 
+
 describe('App unit test', () => {
   let renderedApp; 
-  beforeEach(() => renderedApp = shallow(<App />));
-
+  beforeEach(() => {
+    renderedApp = shallow(<App />, { disableLifecycleMethods: true});
+  });
   describe('App default state', () => {
-    test('App has default state of the city', () => {
+    test('App has default state', () => {
+      console.log(renderedApp)
       const expectedState = {
-        city: ''
+        currentWeather: [],
+        sevenHour: [],
+        tenDay: [],
+        city: '',
+        state: '',
+        error: false
       };
       const actualState = renderedApp.state();
 
       expect(actualState).toEqual(expectedState);
     });
   });
-
-    test('updateCurrentCityValue changes the city based on user input', () => {
-      const expectedState = 'some city';
-      const mockEvent = { target: { value: 'some city' } };
-      renderedApp.instance().updateCurrentCityValue(mockEvent);
-
-      const actualState = renderedApp.state().city;
-
-      expect(actualState).toEqual(expectedState);
-    })
-    test('')
 });
