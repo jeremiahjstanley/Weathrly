@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import locationData from '../../cityStateData.js';
+import locationData from '../../cityStateData.js'
 // import Trie from './@chrisboylen/complete-me/';
 // const trie = new Trie();
 // trie.populate(locationData);
@@ -40,10 +40,6 @@ class Search extends Component {
           onChange={(event) => this.updateLocationValue(event)}
         />
         <datalist id="cities">
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         </datalist>
         <button onClick= {(event) => this.props.getLocation(this.state.location)}>
           Submit
