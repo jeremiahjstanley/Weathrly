@@ -32,10 +32,10 @@ span {
   margin: .5em;
 }
 
-.seven-hour-cont {
+/* .seven-hour-cont {
   justify-content: space-around;
   overflow: scroll;
-}
+} */
 
 .day {
   background-color: rgb(249, 252, 255, .7);
