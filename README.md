@@ -1,3 +1,5 @@
+# Weathrly
+Is a weather app that interacts with the web-api. The API provides weather data for all the cities in the united states.
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
