@@ -65,6 +65,7 @@ button:hover {
 
 .seven-hour-cont {
   display: flex;
+  width: 100%;
 }
 
 .ten-day-cont {
