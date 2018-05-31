@@ -9,59 +9,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
-# Code Example
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      currentWeather: [],
-      sevenHour: [],
-      tenDay: [],
-      city: '',
-      state: '',
-      error: false
-    }
-    this.getLocation = this.getLocation.bind(this);
-  }
-
-  componentDidMount() {
-    let stringifiedLocation = localStorage.getItem('location');
-    let parsedLocation = JSON.parse(stringifiedLocation);
-    if (parsedLocation) {
-      this.getLocation(parsedLocation)
-    }
-  }
-
-  getLocation(input) {
-    let userInput = input.split(',');
-    let city = userInput[0];
-    let state = userInput[1];
-    fetch(`http://api.wunderground.com/api/${API_K}//conditions/geolookup/hourly/forecast10day/q/${state}/${city}.json`)
-      .then(data => data.json())
-      .then(parsedData => {
-      this.setState({
-          city: city,
-          state: state,
-          sevenHour: sevenHourWeatherData(parsedData),
-          tenDay: tenDayWeatherData(parsedData),
-          currentWeather: currentWeatherData(parsedData),
-          error: false
-        })
-      this.storeLocation(input);
-      })
-      .catch(err => {
-        this.setState({
-          error: true,
-        })
-    })
-  }
-
-  storeLocation(location) {
-    let stringifiedLocation = JSON.stringify(location);
-    localStorage.setItem('location', stringifiedLocation);
-  }
-  
-
 ## Table of Contents
 
 - [Updating to New Releases](#updating-to-new-releases)
