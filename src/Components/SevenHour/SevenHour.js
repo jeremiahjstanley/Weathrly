@@ -1,9 +1,10 @@
 import React from 'react';
 import Card from '../Card/Card.js'; 
+import './SevenHour.css'
 
 const SevenHour = props => {
   return (
-    <div>
+    <div className="seven-hour-cont">
     {
       props.sevenHour.map((hour, index) => {
         let sevenHourKey = index + hour.hour + hour.condition;

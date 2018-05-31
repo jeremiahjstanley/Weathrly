@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import locationData from '../../cityStateData.js';
-import Trie from '@chrisboylen/complete-me/';
-const trie = new Trie();
-trie.populate(locationData);
+// import Trie from './@chrisboylen/complete-me/';
+// const trie = new Trie();
+// trie.populate(locationData);
 
 
 
@@ -11,7 +11,7 @@ class Search extends Component {
     super()
     this.state = {
       location: '',
-      suggestions: []
+      // suggestions: []
     }
     this.updateLocationValue = this.updateLocationValue.bind(this);
   }
@@ -19,15 +19,15 @@ class Search extends Component {
   updateLocationValue(event) {
     const location = {location: event.target.value}
     this.setState(location)
-    const suggestions = trie.suggest(this.state.location) || []
-    this.setState({suggestions: suggestions})
+    // const suggestions = trie.suggest(this.state.location) || []
+    // this.setState({suggestions: suggestions})
   }
 
-  citySuggest() {
-    return this.state.suggestions.splice(0, 4).map(city => {
-        return <option>{city}</option>
-    })
-  }
+  // citySuggest() {
+  //   return this.state.suggestions.splice(0, 4).map(city => {
+  //       return <option>{city}</option>
+  //   })
+  // }
 
   render() {
     return (
@@ -40,7 +40,6 @@ class Search extends Component {
           onChange={(event) => this.updateLocationValue(event)}
         />
         <datalist id="cities">
-          { this.citySuggest() }
         </datalist>
         <button onClick= {(event) => this.props.getLocation(this.state.location)}>
           Submit
