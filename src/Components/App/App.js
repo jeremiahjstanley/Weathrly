@@ -43,7 +43,8 @@ class App extends Component {
           state: state,
           sevenHour: sevenHourWeatherData(parsedData),
           tenDay: tenDayWeatherData(parsedData),
-          currentWeather: currentWeatherData(parsedData)
+          currentWeather: currentWeatherData(parsedData),
+          error: false
         })
       this.storeLocation(input);
       })
@@ -61,7 +62,7 @@ class App extends Component {
   
   renderCurrentWeather() {
     return (
-      <div className="root">
+      <div className="root, current-weather">
       <h2>Enter Location</h2>
         <Search 
           getLocation={this.getLocation}
@@ -85,7 +86,7 @@ class App extends Component {
 
   renderErrorPage() {
     return (
-      <div className="root">
+      <div className="root, error-page">
         <ErrorPage/>
         <Search 
           getLocation={this.getLocation}
@@ -96,7 +97,7 @@ class App extends Component {
 
   renderSplashPage() {
     return (
-        <div className="root">
+        <div className="root, splash-page">
           <h1>Welcome to Weathrly</h1>
             <Search 
               getLocation={this.getLocation}
@@ -106,10 +107,11 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.error) {
+        return this.renderErrorPage()
+    }
     if (this.state.city) {
       return this.renderCurrentWeather()
-    } else if (this.state.error) {
-        return this.renderErrorPage()
     } else
         return this.renderSplashPage()
   }

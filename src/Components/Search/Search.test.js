@@ -33,13 +33,13 @@ describe('Search unit test', () => {
   describe('Search UI tests', () => {
     test('Search should render correct Search inputs', () =>  {
       const expectedSearchLength = 1;
-      const actualSearchLength = renderedSearch.find('Search').length;
+      const actualSearchLength = renderedSearch.find('form').length;
       
-      const expectedInputLength = 2;
-      const actualInputLength = renderedSearch.find('[Input').length;
+      const expectedInputLength = 1;
+      const actualInputLength = renderedSearch.find('input').length;
      
       const expectedSubmitButtonLength = 1;
-      const actualSubmitButtonLength = renderedSearch.find('Button').length;
+      const actualSubmitButtonLength = renderedSearch.find('button').length;
 
       expect(actualSearchLength).toBe(expectedSearchLength);
       expect(actualInputLength).toBe(expectedInputLength);
