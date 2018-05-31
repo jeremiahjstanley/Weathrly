@@ -40,17 +40,16 @@ describe('App tests', () => {
       expect(actualState).toEqual(expectedState);
     });
     test('App renders the current weather', () => {
-
-      const mockData = {
-        city: "Denver",
-        state: "Co",
+      const mockState = {
+        currentWeather: [{}],
+        sevenHour: [{}],
+        tenDay: [{}],
+        city: 'Denver',
+        state: 'Co',
         error: false
       };
 
-      renderedApp.setState({ mockData })
-      console.log(renderedApp.debug())
-      renderedApp.render()
-
+      renderedApp.setState(mockState)
 
       const actualState = renderedApp.find('.current-weather').length
       const expectedState = 1
@@ -60,4 +59,3 @@ describe('App tests', () => {
   });
 });
 
-      // 
