@@ -22,7 +22,7 @@ describe('Current Weather tests', () => {
 
       expect(actualWeatherLength).toEqual(expectedWeatherLength);
     });
-    test('Seven Hour generates card components with the correct props', () => {
+    test('Current weather card generates card components with the correct props', () => {
       const expectedWeatherProps =  { city: "Denver, CO",
                                       condition: "Sunny",
                                       temperature: "70",

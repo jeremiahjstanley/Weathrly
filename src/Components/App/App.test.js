@@ -48,7 +48,9 @@ describe('App tests', () => {
       };
 
       renderedApp.setState({ mockData })
+      console.log(renderedApp.debug())
       renderedApp.render()
+
 
       const actualState = renderedApp.find('.current-weather').length
       const expectedState = 1
