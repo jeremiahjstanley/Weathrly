@@ -2,6 +2,14 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import App from '../App/App.js';
 
+global.JSON = {
+  parse: jest.fn(), 
+  stringify: jest.fn()
+}
+global.localStorage = {
+  getItem: jest.fn(),
+  setItem: jest.fn()
+}
 
 describe('App tests', () => {
   let renderedApp; 
@@ -57,5 +65,26 @@ describe('App tests', () => {
       expect(actualState).toEqual(expectedState);
     });
   });
+});
+describe('App unit tests', () => {
+    test('App updates state when search info submited', () => {
+      spyOn(console, 'error');
+      let location = 'Denver, CO'
+      let renderedApp = mount(<App />)
+      let mockEvent = jest.fn(() => {
+        renderedApp.instance.getLocation(location)
+      })
+      const expectedState = {
+        currentWeather: [],
+        sevenHour: [],
+        tenDay: [],
+        city: 'Denver',
+        state: 'CO',
+        error: false
+      }
+
+      const actualState = renderedApp.state();
+      expect(actualState).toEqual(expectedState);
+    });
 });
 

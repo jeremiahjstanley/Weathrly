@@ -35,7 +35,7 @@ class Search extends Component {
         <input 
           type="text"
           placeholder = "Type city, state here!"
-          onFocus = "this.placeholder = ''"
+          onFocus = {(event) => "this.placeholder = ''"}
           list="cities"
           onChange={(event) => this.updateLocationValue(event)}
         />
