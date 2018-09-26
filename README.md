@@ -4,7 +4,7 @@ This project focuses on displaying data from the Weather Underground API and is 
 
 ### Screenshots
 
-<img alt="screen shot 2017-12-10 at 3 54 50 pm" src="/screenshot.png">
+<img alt="screen shot 2017-12-10 at 3 54 50 pm" src="./public/screenshot.png">
 
 ```
 npm install
